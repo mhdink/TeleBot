@@ -6,7 +6,166 @@
     <meta name="description" content="Purchase Form with Animated Elements">
     <title>Purchase Form</title>
     <style>
-        /* این قسمت همان استایل‌های شماست */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #242331; /* رنگ بک گراند اصلی */
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .loading-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #242331; /* رنگ بک گراند اصلی */
+        }
+
+        .loading {
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 8px solid #dc2941; /* رنگ قرمز */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #242331;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1); /* حالت شیشه‌ای */
+        }
+
+        h1 {
+            text-align: center;
+            color: #dc2941; /* رنگ قرمز */
+            margin-bottom: 20px;
+            font-size: 24px;
+            position: relative;
+        }
+
+        h1:hover::after {
+            transform: translateY(-50%) scale(1.2);
+            opacity: 1;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+            color: #dc2941; /* رنگ قرمز */
+        }
+
+        input, select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #dc2941; /* رنگ قرمز */
+            border-radius: 4px;
+            background-color: #242331;
+            color: #fff;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"] {
+            border: none;
+        }
+
+        input:focus, select:focus {
+            border-color: #dc2941; /* رنگ قرمز */
+        }
+
+        button {
+            padding: 10px;
+            background-color: #dc2941; /* رنگ قرمز */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #a61c2b; /* رنگ دارکتر قرمز */
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #dc2941; /* رنگ قرمز */
+        }
+
+        .checkbox-label input {
+            margin-right: 8px;
+        }
+
+        .error-message {
+            color: #dc2941; /* رنگ قرمز */
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .success-message {
+            color: #4caf50;
+            font-size: 16px;
+            margin-top: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        /* Animated Elements */
+        @keyframes moveEmoji {
+            0% {
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                transform: translateY(-60%) scale(1.2);
+            }
+            100% {
+                transform: translateY(-50%) scale(1);
+            }
+        }
+
+        .container:hover h1::after {
+            animation: moveEmoji 1s ease infinite;
+        }
+
+        @keyframes animateBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        body {
+            animation: animateBackground 10s linear infinite;
+        }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -17,7 +176,8 @@
 
     <div class="container" id="mainContainer" style="display: none;">
         <h1>FX REPLAY Purchase Form</h1>
-        <form action="https://formspree.io/f/xjvnyqqy" method="post">
+        <!-- modify this form HTML and place wherever you want your form -->
+        <form action="https://formspree.io/f/xjvnyqqy" method="POST" enctype="multipart/form-data">
             <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" required>
             <span class="error-message">Please enter your full name.</span>
@@ -26,7 +186,30 @@
             <input type="email" id="email" name="email" required>
             <span class="error-message">Please enter a valid email address.</span>
 
-            <!-- سایر فیلدهای فرم -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="error-message">Password is required.</span>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <span class="error-message">Please enter your phone number.</span>
+
+            <label for="subscription">Subscription Type:</label>
+            <select id="subscription" name="subscription" required>
+                <option value="1">✨1 Month Subscription✨</option>
+                <option value="12">🌟1 Year Subscription🌟</option>
+            </select>
+            <span class="error-message">Please select a subscription type.</span>
+
+            <label for="proofOfPayment">Proof of Payment (JPG, JPEG, PNG):</label>
+            <input type="file" id="proofOfPayment" name="proofOfPayment" accept="image/jpeg, image/png" required>
+            <span class="error-message">Please upload a valid image file (JPG, JPEG, PNG).</span>
+
+            <div class="checkbox-label">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">I agree to the terms and conditions</label>
+            </div>
+            <span class="error-message">You must agree to the terms and conditions.</span>
 
             <button type="submit">Purchase</button>
             <p class="success-message">Purchase successful! 🎉</p>
