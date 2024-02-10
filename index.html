@@ -1,197 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Purchase Form with Animated Elements">
-    <title>Purchase Form</title>
-	 <script>
+    <!-- ... (سایر بخش‌های head) ... -->
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
             setTimeout(function() {
                 document.getElementById("loadingContainer").style.display = "none";
                 document.getElementById("mainContainer").style.display = "block";
             }, 1000);
+
+            // Function to handle successful form submission and redirect
+            function handleFormSubmission() {
+                // Assuming the form has an id attribute (e.g., "purchaseForm")
+                var form = document.getElementById("purchaseForm");
+
+                // Assuming the form submission is asynchronous
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault(); // Prevent the default form submission
+                    // Perform any additional actions if needed
+
+                    // Redirect to success.html after a delay (e.g., 2 seconds)
+                    setTimeout(function() {
+                        window.location.href = "success.html";
+                    }, 2000);
+                });
+            }
         });
-
-        // Function to handle successful form submission and redirect
-        function handleFormSubmission() {
-            // Assuming the form has an id attribute (e.g., "purchaseForm")
-            var form = document.getElementById("purchaseForm");
-
-            // Assuming the form submission is asynchronous
-            form.addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevent the default form submission
-                // Perform any additional actions if needed
-
-                // Redirect to success.html after a delay (e.g., 2 seconds)
-                setTimeout(function() {
-                    window.location.href = "success.html";
-                }, 2000);
-            });
-        }
     </script>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #242331; /* رنگ بک گراند اصلی */
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .loading-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #242331; /* رنگ بک گراند اصلی */
-        }
-
-        .loading {
-            border: 8px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 8px solid #dc2941; /* رنگ قرمز */
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #242331;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.1); /* حالت شیشه‌ای */
-        }
-
-        h1 {
-            text-align: center;
-            color: #dc2941; /* رنگ قرمز */
-            margin-bottom: 20px;
-            font-size: 24px;
-            position: relative;
-        }
-
-        h1:hover::after {
-            transform: translateY(-50%) scale(1.2);
-            opacity: 1;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            margin-bottom: 8px;
-            color: #dc2941; /* رنگ قرمز */
-        }
-
-        input, select, textarea {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #dc2941; /* رنگ قرمز */
-            border-radius: 4px;
-            background-color: #242331;
-            color: #fff;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="file"] {
-            border: none;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #dc2941; /* رنگ قرمز */
-        }
-
-        button {
-            padding: 10px;
-            background-color: #dc2941; /* رنگ قرمز */
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #a61c2b; /* رنگ دارکتر قرمز */
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            color: #dc2941; /* رنگ قرمز */
-        }
-
-        .checkbox-label input {
-            margin-right: 8px;
-        }
-
-        .error-message {
-            color: #dc2941; /* رنگ قرمز */
-            font-size: 14px;
-            margin-top: 4px;
-            display: none;
-        }
-
-        .success-message {
-            color: #4caf50;
-            font-size: 16px;
-            margin-top: 10px;
-            text-align: center;
-            display: none;
-        }
-
-        /* Animated Elements */
-        @keyframes moveEmoji {
-            0% {
-                transform: translateY(-50%) scale(1);
-            }
-            50% {
-                transform: translateY(-60%) scale(1.2);
-            }
-            100% {
-                transform: translateY(-50%) scale(1);
-            }
-        }
-
-        .container:hover h1::after {
-            animation: moveEmoji 1s ease infinite;
-        }
-
-        @keyframes animateBackground {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
-
-        body {
-            animation: animateBackground 10s linear infinite;
-        }
-
-        /* Responsive Styles */
-        @media only screen and (max-width: 600px) {
-            .container {
-                width: 90%;
-            }
-        }
-    </style>
+    <!-- ... (سایر بخش‌های head) ... -->
 </head>
 <body>
 
@@ -202,7 +38,7 @@
     <div class="container" id="mainContainer" style="display: none;">
         <h1>FX REPLAY Purchase Form</h1>
         <!-- modify this form HTML and place wherever you want your form -->
-        <form action="https://formspree.io/f/xjvnyqqy" method="POST">
+        <form id="purchaseForm" action="https://formspree.io/f/xjvnyqqy" method="POST">
             <label for="email">Your email:</label>
             <input type="email" id="email" name="email" required>
             <span class="error-message">Please enter a valid email address.</span>
@@ -211,7 +47,7 @@
             <textarea id="message" name="message" required></textarea>
             <span class="error-message">Please enter your message.</span>
 
-            <button type="submit">Send</button>
+            <button type="submit" onclick="handleFormSubmission()">Send</button>
             <p class="success-message">Message sent successfully! 🎉</p>
         </form>
     </div>
