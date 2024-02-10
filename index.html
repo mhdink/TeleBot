@@ -5,31 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Purchase Form with Animated Elements">
     <title>Purchase Form</title>
-	 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(function() {
-                document.getElementById("loadingContainer").style.display = "none";
-                document.getElementById("mainContainer").style.display = "block";
-            }, 1000);
-        });
-
-        // Function to handle successful form submission and redirect
-        function handleFormSubmission() {
-            // Assuming the form has an id attribute (e.g., "purchaseForm")
-            var form = document.getElementById("purchaseForm");
-
-            // Assuming the form submission is asynchronous
-            form.addEventListener("submit", function(event) {
-                event.preventDefault(); // Prevent the default form submission
-                // Perform any additional actions if needed
-
-                // Redirect to success.html after a delay (e.g., 2 seconds)
-                setTimeout(function() {
-                    window.location.href = "success.html";
-                }, 2000);
-            });
-        }
-    </script>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -97,7 +72,7 @@
             color: #dc2941; /* رنگ قرمز */
         }
 
-        input, select, textarea {
+        input, select {
             padding: 10px;
             margin-bottom: 20px;
             border: 1px solid #dc2941; /* رنگ قرمز */
@@ -111,7 +86,7 @@
             border: none;
         }
 
-        input:focus, select:focus, textarea:focus {
+        input:focus, select:focus {
             border-color: #dc2941; /* رنگ قرمز */
         }
 
@@ -201,18 +176,42 @@
 
     <div class="container" id="mainContainer" style="display: none;">
         <h1>FX REPLAY Purchase Form</h1>
-        <!-- modify this form HTML and place wherever you want your form -->
-        <form action="https://formspree.io/f/xjvnyqqy" method="POST">
-            <label for="email">Your email:</label>
+        <form action="https://formspree.io/f/xjvnyqqy" method="POST" id="purchaseForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+            <span class="error-message">Please enter your full name.</span>
+
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             <span class="error-message">Please enter a valid email address.</span>
 
-            <label for="message">Your message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <span class="error-message">Please enter your message.</span>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="error-message">Password is required.</span>
 
-            <button type="submit">Send</button>
-            <p class="success-message">Message sent successfully! 🎉</p>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <span class="error-message">Please enter your phone number.</span>
+
+            <label for="subscription">Subscription Type:</label>
+            <select id="subscription" name="subscription" required>
+                <option value="1">✨1 Month Subscription✨</option>
+                <option value="12">🌟1 Year Subscription🌟</option>
+            </select>
+            <span class="error-message">Please select a subscription type.</span>
+
+            <label for="proofOfPayment">Proof of Payment (JPG, JPEG, PNG):</label>
+            <input type="file" id="proofOfPayment" name="proofOfPayment" accept="image/jpeg, image/png" required>
+            <span class="error-message">Please upload a valid image file (JPG, JPEG, PNG).</span>
+
+            <div class="checkbox-label">
+                <input type="checkbox" id="agree" name="agree" required>
+                <label for="agree">I agree to the terms and conditions</label>
+            </div>
+            <span class="error-message">You must agree to the terms and conditions.</span>
+
+            <button type="submit" onclick="handleFormSubmission()">Purchase</button>
+            <p class="success-message" id="successMessage">Purchase successful! 🎉</p>
         </form>
     </div>
 
@@ -223,6 +222,23 @@
                 document.getElementById("mainContainer").style.display = "block";
             }, 1000);
         });
+
+        function handleFormSubmission() {
+            var form = document.getElementById("purchaseForm");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Display the success message
+                var successMessage = document.getElementById("successMessage");
+                successMessage.style.display = "block";
+
+                // You can redirect to success.html after a delay if needed
+                setTimeout(function() {
+                    window.location.href = "success.html";
+                }, 2000); // Redirect after 2 seconds (adjust as needed)
+            });
+        }
     </script>
 
 </body>
